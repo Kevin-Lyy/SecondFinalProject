@@ -1,0 +1,56 @@
+ArrayList<Enemy> enemies;
+
+public void setup(){
+  enemies = new ArrayList<Enemy>();
+  for(int c = 0;c<3;c++){
+    enemies.add(new Enemy(1));
+  }
+}
+
+public class Enemy{
+  float x, xspeed, xacc;
+  float y, yspeed, yacc;
+  float r;
+  color c;
+  int size;
+  
+  public Enemy(){
+    x = width/2;
+    y = height/2;
+    r = 50;
+    c = color(0);
+    xspeed= 2;
+    yspeed= 2;
+  }
+  
+  public Enemy(int count) {
+    x = random(width-2*r)+r;
+    y = random(height-2*r)+r;
+    r = 20+random(20);
+    c = color(255, 255, 255);
+    xspeed= random(1)-1;
+    yspeed= random(1)-1;
+
+  }
+  public void update(ArrayList<Enemy> enemies){
+  checkWalls();
+  }
+  
+  
+  public void checkWalls() {
+    r = size /2;
+    if (x < r) {
+      x = r;
+    }
+    if (x > width - r) {
+      x = width - r;
+    }
+    if (y < r) {
+      y = r;
+    }
+     if (y > height - r) {
+      y = height - r;
+     }
+  }
+
+}
