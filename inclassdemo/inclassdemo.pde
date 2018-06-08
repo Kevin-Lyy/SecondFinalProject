@@ -91,6 +91,6 @@ public class Mover {
   }
   public void display() {
     fill(c);
-    ellipse(x, y, r * 2, r * 2);
+    rect(x, y, r * 2, r * 2);
   }
 }

@@ -1,38 +1,40 @@
-public class Enemy {
-  float x, xspeed, xacc;
-  float y, yspeed, yacc;
+Player p;
+public class Enemy extends entity {
+  float x, y, speed, size;
   float r;
-  color enemyColor;
-  int size;
+  int health;
+  color Color;
+  boolean[] keys = new boolean [5];
 
-  public Enemy() {
-    x = 800;
-    y = 300;
-    enemyColor = color(0);
-    xspeed= 2;
-    yspeed= 2;
+
+  public Enemy(float x1, float y1, float speed1, float size1) {
+    x = x1;
+    y = y1;
+    Color = color(0, 255, 0);
+    speed = speed1;
+    size = size1;
+    health = 3;
   }
 
-  public Enemy(int count) {
-    for (int i = 0; i < count; i++) {
-      x = random(width-2*r)+r;
-      y = random(height-2*r)+r;
-      enemyColor = color(0);
-      xspeed= random(1)-1;
-      yspeed= random(1)-1;
-    }
-  }
-
-  public void updateEnemy() {
+  void update() {
     checkWalls();
-    x+= xspeed;
-    y+= yspeed;
-    yspeed += yacc;
-    xspeed += xacc;
-    fill(enemyColor);
-    rect(300, 200, 20, 20);
+    checkCollison(p);
+    checkAttack();
+    if (keys[1] == true) {
+      y = y - speed;
+    }
+    if (keys[2] == true) {
+      x = x - speed;
+    }
+    if (keys[3] == true) {
+      y = y + speed;
+    }
+    if (keys[4] == true) {
+      x = x + speed;
+    }
+    fill(Color);
+    rect(x, y, size, size);
   }
-
 
   public void checkWalls() {
     r = size/2;
@@ -47,6 +49,49 @@ public class Enemy {
     }
     if (y > height - r) {
       y = height - r;
+    }
+  }
+  public void checkCollison(final entity e) {
+    if (this == p) {
+      System.out.print("no");
+    }
+  }
+  public void checkAttack() {
+  }
+
+
+  void keyP() {
+    if (key == 's') {
+      keys[1] = true;
+    }
+    if (key == 'd') {
+      keys[2] = true;
+    }
+    if (key == 'w') {
+      keys[3] = true;
+    }
+    if (key == 'a') {
+      keys[4] = true;
+    }  
+    if (key == 'j') {
+      //attack
+    }
+  }
+
+  void keyR() {
+    if (key=='s') {
+      keys[1]=false;
+    }
+    if (key=='d') {
+      keys[2]=false;
+    }
+    if (key=='w') {
+      keys[3]=false;
+    }
+    if (key=='a') {
+      keys[4]=false;
+    }
+    if (key == 'j') {
     }
   }
 }
