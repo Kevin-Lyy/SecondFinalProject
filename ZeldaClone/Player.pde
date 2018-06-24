@@ -1,15 +1,15 @@
 Enemy e;
-public class Player extends entity {
-  float x, y, speed, size;
+public class Player{
+  float x= 400;
+  float y= 200;
+  float speed, size;
   float r;
   int health;
   color Color;
   boolean weapon = false;
   boolean[] keys = new boolean [5];
 
-  public Player(float x1, float y1, float speed1, float size1) {
-    x = x1;
-    y = y1;
+  public Player(float speed1, float size1) {
     Color = color(0, 0, 255);
     speed = speed1;
     size = size1;
@@ -18,7 +18,7 @@ public class Player extends entity {
 
   void update() {
     checkWalls();
-    checkCollison(e);
+
     if (keys[1] == true) {
       y = y - speed;
     }
@@ -52,10 +52,6 @@ public class Player extends entity {
   }
   public void checkAttack() {
   }
-  public void checkCollison(final entity e) {
-    if (this == p) {
-      System.out.print("no");
-    }
 
 
     void keyP() {
@@ -92,4 +88,11 @@ public class Player extends entity {
       if (key == 'j') {
       }
     }
+    public float gethX(){
+      return x;
+    }
+    public float getY(){
+      return y;
+    }
+    
   }
